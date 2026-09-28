@@ -1,5 +1,0 @@
-package com.tatf.swaglabs.modules.home.data;
-
-public class HomeData {
-    public static final String TITLE = "Swag Labs";
-}
