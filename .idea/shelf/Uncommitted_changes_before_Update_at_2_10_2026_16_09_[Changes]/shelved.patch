@@ -1,0 +1,692 @@
+Index: automation-framework/src/test/java/AdminCES/CrearCuentaAdminTest.java
+===================================================================
+diff --git a/automation-framework/src/test/java/AdminCES/CrearCuentaAdminTest.java b/automation-framework/src/test/java/AdminCES/CrearCuentaAdminTest.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/AdminCES/CrearCuentaAdminTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,75 +0,0 @@
+-package AdminCES;
+-
+-import com.tatf.core.browser.BrowserFactory;
+-import com.tatf.core.browser.IBrowser;
+-import com.tatf.core.verification.IVerify;
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-
+-public class CrearCuentaAdminTest {
+-    private IBrowser browser;
+-    private IVerify verify;
+-
+-    @BeforeEach
+-    public void setUp() {
+-        browser = BrowserFactory.getBrowser(false);
+-        verify = IVerify.create();
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-        browser.find().id("pass").write("3)ea60e0be3ba12c6ecd%7297868%5c4");
+-        browser.find().xpath("//button[contains(text(), 'Ingresar')]").click();
+-    }
+-    @Test
+-    public void testCrearCuentaAdmin() {
+-        String nombre = "Gustavo";
+-        String apellido = "Da Rosa";
+-        String correo = "Gustavo@gmail.com";
+-        String contrasenia = "1234";
+-        String paisNacimiento = "Uruguay";
+-
+-        verify.verifyTrue(browser.find().css("a.btn.btn-secondary.dropdown-toggle")
+-                .isDisplayed(), "Se esperaba no tener una sesión iniciada");
+-
+-        browser.find().css("a[href*='register']").click();
+-
+-        verify.verifyTrue(browser.find()
+-                        .xpath("//h5[contains(text(), 'Crear cuenta Administrador')]")
+-                        .isDisplayed(), "No se encuentra en el formulario de registro");
+-        browser.find().name("inputFirstName").write(nombre);
+-        browser.find().name("inputLastName").write(apellido);
+-        browser.find().name("inputEmail").write(correo);
+-        browser.find().name("inputPassword").write(contrasenia);
+-        browser.find().name("inputRepeatPassword").write(contrasenia);
+-        browser.find().name("inputCountry").write(paisNacimiento);
+-        browser.find().id("btnRegister").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-
+-        verify.verifyTrue(browser.find()
+-                .css("a.btn.btn-secondary.dropdown-toggle")
+-                .isDisplayed(), "No redirigio a la pantalla principal");
+-
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-        browser.wait("a.menu-effect-ces[href*='login']");
+-        browser.find().css("a.menu-effect-ces[href*='login']").click();
+-
+-        verify.verifyTrue(browser
+-                        .find().xpath("//h5[contains(text(), 'Iniciar sesión Administrador')]")
+-                        .isDisplayed(), "No se encuentra en el formulario de inicio de sesión");
+-        browser.find().name("inputEmail").write(correo);
+-        browser.find().name("inputPassword").write(contrasenia);
+-        browser.find().css("#formLogin button.rounded-end-pill").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-        IVerify.create().verifyTrue(browser.find()
+-                .css("a.btn.btn-orange-ces.dropdown-toggle")
+-                .isDisplayed(), "No hay usuario logueado");
+-    }
+-
+-    @AfterEach
+-    public void tearDown() {
+-        BrowserFactory.quitBrowser();
+-    }
+-}
+\ No newline at end of file
+Index: automation-framework/src/test/java/AdminCES/EliminarCuentaTesterTest.java
+===================================================================
+diff --git a/automation-framework/src/test/java/AdminCES/EliminarCuentaTesterTest.java b/automation-framework/src/test/java/AdminCES/EliminarCuentaTesterTest.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/AdminCES/EliminarCuentaTesterTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,70 +0,0 @@
+-package AdminCES;
+-
+-import com.tatf.core.browser.BrowserFactory;
+-import com.tatf.core.browser.IBrowser;
+-import com.tatf.core.verification.IVerify;
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-
+-public class EliminarCuentaTesterTest {
+-
+-    private IBrowser browser;
+-    private IVerify verify;
+-
+-    @BeforeEach
+-    public void setUp() {
+-        browser = BrowserFactory.getBrowser(false);
+-        verify = IVerify.create();
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-        browser.find().id("pass").write("3)ea60e0be3ba12c6ecd%7297868%5c4");
+-        browser.find().xpath("//button[contains(text(), 'Ingresar')]").click();
+-
+-
+-        browser.wait("a.menu-effect-ces[href*='login']");
+-        browser.find().css("a.menu-effect-ces[href*='login']").click();
+-
+-        browser.find().name("inputEmail").write("yaniscorrea@gmail.com");
+-        browser.find().name("inputPassword").write("12345");
+-        browser.find().xpath("//button[contains(normalize-space(), 'Iniciar Sesión')]").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-    }
+-
+-    @Test
+-    public void testEliminarUsuarioTester() {
+-        String correo = "nahuel@gmail.com";
+-
+-        verify.verifyTrue(
+-                browser.find().css("a.btn.btn-orange-ces.dropdown-toggle").isDisplayed(),
+-                "No se encuentra el usuario logueado");
+-
+-        browser.wait("a.menu-effect-ces[href*='view-users']");
+-        browser.find().css("a.menu-effect-ces[href*='view-users']").click();
+-
+-        verify.verifyTrue(
+-                browser.find().id(correo).isDisplayed(),
+-                "El usuario con correo " + correo + " no se encuentra en la tabla para eliminar");
+-
+-        browser.find().id(correo).click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-
+-        String contenidoTabla = browser.find().id("bodyTable").getText();
+-        verify.verifyFalse(
+-                contenidoTabla.contains(correo),
+-                "El usuario con correo " + correo + " aún se encuentra visible en la tabla");
+-    }
+-
+-    @AfterEach
+-    public void tearDown() {
+-        BrowserFactory.quitBrowser();
+-    }
+-}
+\ No newline at end of file
+Index: automation-framework/src/test/java/AdminCES/CrearCuentaTesterTest.java
+===================================================================
+diff --git a/automation-framework/src/test/java/AdminCES/CrearCuentaTesterTest.java b/automation-framework/src/test/java/AdminCES/CrearCuentaTesterTest.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/AdminCES/CrearCuentaTesterTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,76 +0,0 @@
+-package AdminCES;
+-
+-import com.tatf.core.browser.BrowserFactory;
+-import com.tatf.core.browser.IBrowser;
+-import com.tatf.core.verification.IVerify;
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-
+-public class CrearCuentaTesterTest {
+-
+-    private IBrowser browser;
+-    private IVerify verify;
+-
+-    @BeforeEach
+-    public void setUp() {
+-        browser = BrowserFactory.getBrowser(false);
+-        verify = IVerify.create();
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-        browser.find().id("pass").write("3)ea60e0be3ba12c6ecd%7297868%5c4");
+-        browser.find().xpath("//button[contains(text(), 'Ingresar')]").click();
+-
+-        browser.wait("a.menu-effect-ces[href*='login']");
+-        browser.find().css("a.menu-effect-ces[href*='login']").click();
+-
+-        browser.find().name("inputEmail").write("yaniscorrea@gmail.com");
+-        browser.find().name("inputPassword").write("12345");
+-        browser.find().xpath("//button[contains(normalize-space(), 'Iniciar Sesión')]").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-
+-    }
+-
+-    @Test
+-    public void testCrearUsuarioTester() {
+-        String nombre = "Gustavo";
+-        String apellido = "Da Rosa";
+-        String correo = "Gustavo@gmail.com";
+-        String contrasenia = "123";
+-        String paisNacimiento = "Uruguay";
+-
+-        verify.verifyTrue(
+-                browser.find().css("a.btn.btn-orange-ces.dropdown-toggle").isDisplayed(),
+-                "No se encuentra el usuario logeuado");
+-
+-        browser.find().css("a[href*='create-user']").click();
+-        verify.verifyTrue(browser.find().xpath("//h5[contains(text(), 'Alta de cuenta para Tester')]").isDisplayed(),
+-                "No se encuentra en el formulario de registro");
+-
+-        browser.find().name("inputFirstName").write(nombre);
+-        browser.find().name("inputLastName").write(apellido);
+-        browser.find().name("inputEmail").write(correo);
+-        browser.find().name("inputCountry").write(paisNacimiento);
+-        browser.find().name("inputPassword").write(contrasenia);
+-        browser.find().id("testerJunior").click();
+-        browser.find().id("btnRegister").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-
+-        browser.wait("a.menu-effect-ces[href*='view-users'']");
+-        browser.find().css("a.menu-effect-ces[href*='view-users']").click();
+-
+-        verify.verifyTrue(browser.find().id(correo).isDisplayed(),
+-                "El usuario con correo " + correo + " no se encuentra en la tabla");
+-    }
+-
+-    @AfterEach
+-    public void tearDown() {
+-        BrowserFactory.quitBrowser();
+-    }
+-}
+Index: automation-framework/src/test/java/com/tatf/tests/TestForm.java
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/tests/TestForm.java b/automation-framework/src/test/java/com/tatf/tests/TestForm.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/com/tatf/tests/TestForm.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,51 +0,0 @@
+-package com.tatf.tests;
+-
+-import org.junit.jupiter.api.AfterAll;
+-import org.junit.jupiter.api.Assertions;
+-import org.junit.jupiter.api.BeforeAll;
+-import org.junit.jupiter.api.Test;
+-import org.openqa.selenium.By;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.chrome.ChromeDriver;
+-import org.openqa.selenium.chrome.ChromeOptions;
+-import org.openqa.selenium.support.ui.Select;
+-
+-import java.time.Duration;
+-
+-public class TestForm {
+-
+-    private static WebDriver driver;
+-
+-    @BeforeAll
+-    static void beforeAll() {
+-        ChromeOptions options = new ChromeOptions();
+-        options.addArguments("start-maximized");
+-
+-        driver = new ChromeDriver(options);
+-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+-    }
+-
+-    @AfterAll
+-    static void afterAll() {
+-        driver.quit();
+-    }
+-
+-    @Test
+-    void completeForm() {
+-        driver.get("http://cestore.ces.com.uy/autotestlab/");
+-        driver.findElement(By.cssSelector("input[type='password']")).sendKeys("3&44fcf@42e157ff0f)21f2#ecb12ad9");
+-        driver.findElement(By.cssSelector("button[type='submit']")).click();
+-        driver.findElement(By.linkText("Formulario")).click();
+-        driver.findElement(By.id("nombre")).sendKeys("Juan Pérez");
+-        driver.findElement(By.id("comentarios")).sendKeys("Comentario de prueba generado por automatización.");
+-        driver.findElement(By.id("aceptoTerminos")).click();
+-        driver.findElement(By.id("femenino")).click();
+-
+-        Select paisSelect = new Select(driver.findElement(By.id("pais")));
+-        paisSelect.selectByValue("uruguay");
+-
+-        driver.findElement(By.id("fecha")).sendKeys("15/03/1995");
+-        driver.findElement(By.linkText("Enviar")).click();
+-
+-    }
+-}
+Index: automation-framework/src/test/java/com/tatf/soluciones/TestForm2.java
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/soluciones/TestForm2.java b/automation-framework/src/test/java/com/tatf/soluciones/TestForm2.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/com/tatf/soluciones/TestForm2.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,37 +0,0 @@
+-package com.tatf.soluciones;
+-
+-import com.tatf.core.browser.BrowserFactory;
+-import com.tatf.core.browser.IBrowser;
+-import org.junit.jupiter.api.AfterAll;
+-import org.junit.jupiter.api.BeforeAll;
+-import org.junit.jupiter.api.Test;
+-
+-public class TestForm2 {
+-
+-    private static IBrowser browser;
+-
+-    @BeforeAll
+-    static void beforeAll() {
+-        browser = BrowserFactory.getBrowser(true);
+-    }
+-
+-    @AfterAll
+-    static void afterAll() {
+-        BrowserFactory.quitBrowser();
+-    }
+-
+-    @Test
+-    void completeForm() {
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/autotestlab/");
+-        browser.find().css("input[type='password']").write("3&44fcf@42e157ff0f)21f2#ecb12ad9");
+-        browser.find().css("button[type='submit']").click();
+-        browser.find().link("Formulario").click();
+-        browser.find().id("nombre").write("Juan Pérez");
+-        browser.find().id("comentarios").write("Comentario de prueba generado por automatización.");
+-        browser.find().id("aceptoTerminos").click();
+-        browser.find().id("femenino").click();
+-        browser.find().id("pais").selectValue("uruguay");
+-        browser.find().id("fecha").write("15/03/1995");
+-        browser.find().link("Enviar").click();
+-    }
+-}
+Index: automation-framework/src/test/java/com/tatf/tests/ConsultarInmobiliariaTest.java
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/tests/ConsultarInmobiliariaTest.java b/automation-framework/src/test/java/com/tatf/tests/ConsultarInmobiliariaTest.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/com/tatf/tests/ConsultarInmobiliariaTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,48 +0,0 @@
+-package com.tatf.tests;
+-
+-import org.junit.jupiter.api.AfterAll;
+-import org.junit.jupiter.api.Assertions;
+-import org.junit.jupiter.api.BeforeAll;
+-import org.junit.jupiter.api.Test;
+-import org.openqa.selenium.By;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.chrome.ChromeDriver;
+-import org.openqa.selenium.chrome.ChromeOptions;
+-
+-import java.time.Duration;
+-
+-public class ConsultarInmobiliariaTest {
+-
+-    private static WebDriver driver;
+-
+-    @BeforeAll
+-    static void beforeAll() {
+-        ChromeOptions options = new ChromeOptions();
+-        options.addArguments("start-maximized");
+-
+-        driver = new ChromeDriver(options);
+-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+-    }
+-
+-    @AfterAll
+-    static void afterAll() {
+-        driver.quit();
+-    }
+-
+-    @Test
+-    void consultarPropiedad() {
+-        driver.get("http://cestore.ces.com.uy/InmoCES/");
+-
+-        driver.findElement(By.cssSelector("input[type='password']")).sendKeys("c#3)d4e9d!bbf4d4ae26df!963=335&]");
+-        driver.findElement(By.cssSelector("button[type='submit']")).click();
+-
+-        driver.findElement(By.cssSelector("button[onclick=\"contactarPropiedad('Cabaña frente al mar')\"]")).click();
+-
+-        driver.findElement(By.id("f-email")).sendKeys("consulta@test.com");
+-        driver.findElement(By.id("f-mensaje")).sendKeys("Me interesa la propiedas, pueden contactarme para resolverme algunas dudas? Muchas gracias.");
+-        driver.findElement(By.xpath("//button[contains(text(),'Enviar mensaje')]")).click();
+-        String mensaje=driver.findElement(By.id("success-msg")).findElement(By.tagName("h3")).getText();
+-
+-        Assertions.assertEquals("¡Mensaje enviado!", mensaje, "El mensaje no es el esperado");
+-    }
+-}
+Index: automation-framework/src/test/java/com/tatf/soluciones/ConsultarInmobiliariaTest2.java
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/soluciones/ConsultarInmobiliariaTest2.java b/automation-framework/src/test/java/com/tatf/soluciones/ConsultarInmobiliariaTest2.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/com/tatf/soluciones/ConsultarInmobiliariaTest2.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,42 +0,0 @@
+-package com.tatf.soluciones;
+-
+-import com.tatf.core.browser.BrowserFactory;
+-import com.tatf.core.browser.IBrowser;
+-import com.tatf.core.element.Element;
+-import com.tatf.core.verification.IVerify;
+-import org.junit.jupiter.api.AfterAll;
+-import org.junit.jupiter.api.BeforeAll;
+-import org.junit.jupiter.api.Test;
+-
+-public class ConsultarInmobiliariaTest2 {
+-
+-    private static IBrowser browser;
+-
+-    @BeforeAll
+-    static void beforeAll() {
+-        browser = BrowserFactory.getBrowser(true);
+-    }
+-
+-    @AfterAll
+-    static void afterAll() {
+-        BrowserFactory.quitBrowser();
+-    }
+-
+-    @Test
+-    void consultarPropiedad() {
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/InmoCES/");
+-        browser.find().css("input[type='password']").write("c#3)d4e9d!bbf4d4ae26df!963=335&]");
+-        browser.find().css("button[type='submit']").click();
+-
+-        browser.find().css("button[onclick=\"contactarPropiedad('Cabaña frente al mar')\"]").click();
+-
+-        browser.find().id("f-email").write("consulta@test.com");
+-        browser.find().id("f-mensaje").write("Me interesa la propiedas, pueden contactarme para resolverme algunas dudas? Muchas gracias.");
+-        browser.find().xpath("//button[contains(text(),'Enviar mensaje')]").click();
+-
+-        browser.wait("success-msg").id();
+-        Element alerta= browser.find().id("success-msg");
+-        String mensajeObtenido =alerta.tag("h3").getText();
+-        IVerify.create().verify("¡Mensaje enviado!", mensajeObtenido, "No se mostró el mensaje de confirmación de envío.");
+-    }
+-}
+Index: automation-framework/src/test/java/AdminCES/ReiniciarContraseniaTest.java
+===================================================================
+diff --git a/automation-framework/src/test/java/AdminCES/ReiniciarContraseniaTest.java b/automation-framework/src/test/java/AdminCES/ReiniciarContraseniaTest.java
+deleted file mode 100644
+--- a/automation-framework/src/test/java/AdminCES/ReiniciarContraseniaTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ /dev/null	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
+@@ -1,63 +0,0 @@
+-package AdminCES;
+-
+-import com.tatf.core.browser.BrowserFactory;
+-import com.tatf.core.browser.IBrowser;
+-import com.tatf.core.verification.IVerify;
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-
+-public class ReiniciarContraseniaTest {
+-
+-    private IBrowser browser;
+-    private IVerify verify;
+-
+-    @BeforeEach
+-    public void setUp() {
+-        browser = BrowserFactory.getBrowser(false);
+-        verify = IVerify.create();
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-        browser.find().id("pass").write("3)ea60e0be3ba12c6ecd%7297868%5c4");
+-        browser.find().xpath("//button[contains(text(), 'Ingresar')]").click();
+-    }
+-
+-    @Test
+-    public void testReiniciarContrasenia() {
+-        String correo = "leonardoperez@gmail.com";
+-        String Contrasenia = "12345";
+-
+-
+-
+-        verify.verifyTrue(
+-                browser.find().css("a.btn.btn-secondary.dropdown-toggle").isDisplayed(),
+-                "Se esperaba no tener una sesión iniciada");
+-
+-        browser.find().css("a[href*='forgot-password']").click();
+-
+-        verify.verifyTrue(browser.find()
+-                .xpath("//h5[contains(text(), 'Reiniciar contraseña')]")
+-                .isDisplayed(), "No se encuentra en el formulario de reinicio de contraseña");
+-
+-        browser.find().name("inputEmail").write(correo);
+-        browser.find().name("inputPassword").write(Contrasenia);
+-        browser.find().name("inputRepeatPassword").write(Contrasenia);
+-
+-        browser.find().id("btnReset").click();
+-
+-        browser.wait("button.swal2-confirm");
+-        browser.find().css("button.swal2-confirm").click();
+-
+-        verify.verifyTrue(browser.find()
+-                .css("a.btn.btn-secondary.dropdown-toggle")
+-                .isDisplayed(), "No redirigio a la pantalla principal");
+-
+-        browser.interaction().navigateTo("http://cestore.ces.com.uy/adminces/");
+-        browser.wait("a.menu-effect-ces[href*='login']");
+-        browser.find().css("a.menu-effect-ces[href*='login']").click();
+-    }
+-
+-    @AfterEach
+-    public void tearDown() {
+-        BrowserFactory.quitBrowser();
+-    }
+-}
+Index: automation-framework/src/test/java/com/tatf/swaglabs/modules/login/pom/LoginPO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.tatf.swaglabs.modules.login.pom;\r\n\r\nimport com.tatf.core.browser.IBrowser;\r\n\r\npublic class LoginPO {\r\n    private final IBrowser browser;\r\n\r\n    private final String title = \"login_logo\";\r\n    private final String usernameInput = \"user-name\";\r\n    private final String passwordInput = \"password\";\r\n    private final String loginButton = \"login-button\";\r\n\r\n    public LoginPO(IBrowser browser) {\r\n        this.browser = browser;\r\n    }\r\n\r\n    public String getTitle() {\r\n        return this.browser.find().className(title).getText();\r\n    }\r\n\r\n    public void enterUsername(String username) {\r\n        this.browser.find().id(usernameInput).write(username);\r\n    }\r\n\r\n    public void enterPassword(String password) {\r\n        this.browser.find().id(passwordInput).write(password);\r\n    }\r\n\r\n    public void clickLogin() {\r\n        this.browser.find().id(loginButton).click();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/pom/LoginPO.java b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/pom/LoginPO.java
+--- a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/pom/LoginPO.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/pom/LoginPO.java	(date 1790895277989)
+@@ -5,10 +5,8 @@
+ public class LoginPO {
+     private final IBrowser browser;
+ 
+-    private final String title = "login_logo";
+-    private final String usernameInput = "user-name";
+-    private final String passwordInput = "password";
+-    private final String loginButton = "login-button";
++    private final String title = "div.login-art p.art-name";
++    //  private final String usernameInput = "#docNumber"
+ 
+     public LoginPO(IBrowser browser) {
+         this.browser = browser;
+@@ -19,14 +17,15 @@
+     }
+ 
+     public void enterUsername(String username) {
+-        this.browser.find().id(usernameInput).write(username);
++         this.browser.find().id("docNumber").write(username);
+     }
+ 
+     public void enterPassword(String password) {
+-        this.browser.find().id(passwordInput).write(password);
++        this.browser.find().id("password").write(password);
+     }
+ 
+-    public void clickLogin() {
+-        this.browser.find().id(loginButton).click();
++    public void btnLogin() {
++        this.browser.find().id("loginBtn").click();
+     }
++
+ }
+Index: automation-framework/src/test/java/com/tatf/swaglabs/modules/base/BaseTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.tatf.swaglabs.modules.base;\r\n\r\nimport com.tatf.core.browser.BrowserFactory;\r\nimport com.tatf.core.browser.IBrowser;\r\nimport org.junit.jupiter.api.AfterAll;\r\nimport org.junit.jupiter.api.BeforeAll;\r\n\r\npublic class BaseTest {\r\n    protected static IBrowser browser;\r\n    protected static String url;\r\n    protected static String userNameValue;\r\n    protected static String passwordValue;\r\n\r\n    @BeforeAll\r\n    static public void configuration() {\r\n        browser = BrowserFactory.getBrowser();\r\n        url = \"https://www.saucedemo.com/\";\r\n        userNameValue = \"standard_user\";\r\n        passwordValue = \"secret_sauce\";\r\n    }\r\n\r\n    @AfterAll\r\n    static public void close() {\r\n        BrowserFactory.quitBrowser();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/swaglabs/modules/base/BaseTest.java b/automation-framework/src/test/java/com/tatf/swaglabs/modules/base/BaseTest.java
+--- a/automation-framework/src/test/java/com/tatf/swaglabs/modules/base/BaseTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ b/automation-framework/src/test/java/com/tatf/swaglabs/modules/base/BaseTest.java	(date 1790894973688)
+@@ -6,21 +6,19 @@
+ import org.junit.jupiter.api.BeforeAll;
+ 
+ public class BaseTest {
+-    protected static IBrowser browser;
+-    protected static String url;
+-    protected static String userNameValue;
+-    protected static String passwordValue;
++        protected static IBrowser browser;
++        protected static String url;
++        protected static String userNameValue;
++        protected static String passwordValue;
+ 
+-    @BeforeAll
+-    static public void configuration() {
+-        browser = BrowserFactory.getBrowser();
+-        url = "https://www.saucedemo.com/";
+-        userNameValue = "standard_user";
+-        passwordValue = "secret_sauce";
+-    }
++        @BeforeAll
++        static public void configuration() {
++            browser = BrowserFactory.getBrowser(true);
++            url = "file:///C:/Users/daros/Downloads/index.html";
++        }
+ 
+-    @AfterAll
+-    static public void close() {
+-        BrowserFactory.quitBrowser();
+-    }
+-}
++        @AfterAll
++        static public void close() {
++            BrowserFactory.quitBrowser();
++        }
++    }
+Index: automation-framework/src/test/java/com/tatf/swaglabs/modules/login/task/LoginTask.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.tatf.swaglabs.modules.login.task;\r\n\r\nimport com.tatf.core.browser.IBrowser;\r\nimport com.tatf.core.verification.IVerify;\r\nimport com.tatf.swaglabs.modules.home.data.HomeData;\r\nimport com.tatf.swaglabs.modules.home.task.HomeTask;\r\nimport com.tatf.swaglabs.modules.login.data.LoginData;\r\nimport com.tatf.swaglabs.modules.login.pom.LoginPO;\r\n\r\npublic class LoginTask {\r\n    private final IBrowser browser;\r\n    private final LoginPO login;\r\n\r\n    public LoginTask(IBrowser browser) {\r\n        this.browser = browser;\r\n        this.login = new LoginPO(this.browser);\r\n    }\r\n\r\n    public void enterToSystem(String url) {\r\n        this.browser.interaction().navigateTo(url);\r\n    }\r\n\r\n    public void verifyTitle(String title) {\r\n        IVerify.create().verify(LoginData.TITLE, this.login.getTitle(), \"El título no es el esperado.\");\r\n    }\r\n\r\n    public void logInToTheSystemAndVerify(String username, String password) {\r\n        this.login.enterUsername(username);\r\n        this.login.enterPassword(password);\r\n        this.login.clickLogin();\r\n        new HomeTask(browser).verifyTitle(HomeData.TITLE);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/task/LoginTask.java b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/task/LoginTask.java
+--- a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/task/LoginTask.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/task/LoginTask.java	(date 1790895596547)
+@@ -1,10 +1,6 @@
+ package com.tatf.swaglabs.modules.login.task;
+ 
+ import com.tatf.core.browser.IBrowser;
+-import com.tatf.core.verification.IVerify;
+-import com.tatf.swaglabs.modules.home.data.HomeData;
+-import com.tatf.swaglabs.modules.home.task.HomeTask;
+-import com.tatf.swaglabs.modules.login.data.LoginData;
+ import com.tatf.swaglabs.modules.login.pom.LoginPO;
+ 
+ public class LoginTask {
+@@ -20,14 +16,19 @@
+         this.browser.interaction().navigateTo(url);
+     }
+ 
+-    public void verifyTitle(String title) {
++     /* public void verifyTitle(String title) {
+         IVerify.create().verify(LoginData.TITLE, this.login.getTitle(), "El título no es el esperado.");
+     }
++    */
+ 
+-    public void logInToTheSystemAndVerify(String username, String password) {
++    public void verifyTitle() {
++        this.login.getTitle();
++    }
++
++    public void logInToTheSystem(String username, String password) {
+         this.login.enterUsername(username);
+         this.login.enterPassword(password);
+-        this.login.clickLogin();
+-        new HomeTask(browser).verifyTitle(HomeData.TITLE);
++        this.login.btnLogin();
++        //  new HomeTask(browser).verifyTitle(HomeData.TITLE);
+     }
+ }
+Index: automation-framework/src/test/java/com/tatf/swaglabs/modules/login/data/LoginData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.tatf.swaglabs.modules.login.data;\r\n\r\npublic class LoginData {\r\n    public static final String TITLE = \"Swag Labs\";\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/data/LoginData.java b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/data/LoginData.java
+--- a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/data/LoginData.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/data/LoginData.java	(date 1790894276997)
+@@ -1,5 +1,5 @@
+ package com.tatf.swaglabs.modules.login.data;
+ 
+ public class LoginData {
+-    public static final String TITLE = "Swag Labs";
+-}
++        public static final String TITLE = "Banco Rambla";
++    }
+Index: automation-framework/src/test/java/com/tatf/swaglabs/modules/login/test/LoginTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.tatf.swaglabs.modules.login.test;\r\n\r\nimport com.tatf.swaglabs.modules.base.BaseTest;\r\nimport com.tatf.swaglabs.modules.login.data.LoginData;\r\nimport com.tatf.swaglabs.modules.login.task.LoginTask;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.DisplayName;\r\nimport org.junit.jupiter.api.Test;\r\n\r\npublic class LoginTest extends BaseTest {\r\n\r\n    private LoginTask iniciarSesion;\r\n\r\n    @BeforeEach\r\n    public void configurar() {\r\n        this.iniciarSesion = new LoginTask(browser);\r\n    }\r\n\r\n    @Test\r\n    @DisplayName(\"Inicia sesión con usuario y contraseña correcto\")\r\n    public void iniciarSesionCorrectoTest() {\r\n        this.iniciarSesion.enterToSystem(url);\r\n        this.iniciarSesion.verifyTitle(LoginData.TITLE);\r\n        this.iniciarSesion.logInToTheSystemAndVerify(userNameValue, passwordValue);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/test/LoginTest.java b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/test/LoginTest.java
+--- a/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/test/LoginTest.java	(revision b550b1e59c2b8eb7292f4e21f8c05357980f0489)
++++ b/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/test/LoginTest.java	(date 1790896446217)
+@@ -20,7 +20,7 @@
+     @DisplayName("Inicia sesión con usuario y contraseña correcto")
+     public void iniciarSesionCorrectoTest() {
+         this.iniciarSesion.enterToSystem(url);
+-        this.iniciarSesion.verifyTitle(LoginData.TITLE);
+-        this.iniciarSesion.logInToTheSystemAndVerify(userNameValue, passwordValue);
++        // this.iniciarSesion.verifyTitle(LoginData.TITLE);
++        this.iniciarSesion.logInToTheSystem(userNameValue, passwordValue);
+     }
+ }

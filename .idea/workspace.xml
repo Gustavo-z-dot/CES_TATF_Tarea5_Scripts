@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6cbd7734-a4a8-4f58-b93f-f4367460c377" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/automation-framework/src/test/resources/datos_alta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/automation-framework/src/test/resources/datos_baja.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/main/java/com/tatf/core/browser/BrowserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/main/java/com/tatf/core/browser/BrowserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/main/java/com/tatf/core/driver/manager/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/main/java/com/tatf/core/driver/manager/DriverManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/main/java/com/tatf/core/find/Find.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/main/java/com/tatf/core/find/Find.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/admin/data/AdminData.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/admin/data/AdminData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/admin/pom/RegistrarAdminPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/admin/pom/RegistrarAdminPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/admin/task/RegistrarAdminTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/admin/task/RegistrarAdminTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/home/data/HomeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/home/data/HomeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/home/pom/HomePO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/home/pom/HomePO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/home/task/HomeTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/home/task/HomeTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/login/data/LoginData.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/login/data/LoginData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/login/pom/AccessPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/login/pom/AccessPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/login/pom/LoginPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/login/pom/LoginPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/login/task/AccessTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/login/task/AccessTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/login/task/LoginTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/login/task/LoginTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/reset/data/ResetData.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/reset/data/ResetData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/reset/pom/ResetPasswordPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/reset/pom/ResetPasswordPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/reset/task/ResetPasswordTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/reset/task/ResetPasswordTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/test/CrearCuentaAdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/parametrizacionTest/CrearCuentaAdminTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/test/CrearCuentaTesterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/parametrizacionTest/CrearCuentaTesterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/test/EliminarCuentaTesterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/parametrizacionTest/EliminarCuentaTesterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/test/ReiniciarContraseniaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/parametrizacionTest/ReiniciarContraseniaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/tester/data/TesterData.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/tester/data/TesterData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/tester/pom/RegistrarTesterPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/tester/pom/RegistrarTesterPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/tester/pom/TablaTesterPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/tester/pom/TablaTesterPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/tester/task/RegistrarTesterTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/tester/task/RegistrarTesterTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_Script2/tester/task/TablaTesterTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/automation-framework/src/test/java/AdminCES_ConTestParametrizados/tester/task/TablaTesterTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/parameterization/example/ExampleTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/base/BaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/home/data/HomeData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/home/pom/HomePO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/home/task/HomeTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/data/LoginData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/pom/LoginPO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/task/LoginTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/java/com/tatf/swaglabs/modules/login/test/LoginTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/automation-framework/src/test/resources/datos_pruebas.csv" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Parametrizacion" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Gustavo-z-dot&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Gustavo-z-dot/CES_TATF_Tarea5_Scripts.git&quot;,
+    &quot;accountId&quot;: &quot;7e91f4ad-5816-4857-a1f0-4077fa7e47f9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3K6vSNZkD4EZCpNNSUZPKeZGq8B" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.CrearCuentaAdminTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CrearCuentaTesterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EliminarCuentaTesterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LoginTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReiniciarContraseniaTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Parametrizacion&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\daros\OneDrive\Desktop\UTEC\Semestre 3\Proyecto 3er Semestre\CES_TATF_Tarea5_Scripts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ReiniciarContraseniaTest">
+    <configuration name="CrearCuentaAdminTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="automated-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AdminCES_ConTestParametrizados.parametrizacionTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AdminCES_Script2ConTestParametrizados.parametrizacionTest" />
+      <option name="MAIN_CLASS_NAME" value="AdminCES_ConTestParametrizados.parametrizacionTest.CrearCuentaAdminTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CrearCuentaTesterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="automated-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AdminCES_ConTestParametrizados.parametrizacionTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AdminCES_Script2.parametrizacionTest" />
+      <option name="MAIN_CLASS_NAME" value="AdminCES_ConTestParametrizados.parametrizacionTest.CrearCuentaTesterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EliminarCuentaTesterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="automated-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AdminCES_ConTestParametrizados.parametrizacionTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AdminCES_Script2ConTestParametrizados.parametrizacionTest" />
+      <option name="MAIN_CLASS_NAME" value="AdminCES_ConTestParametrizados.parametrizacionTest.EliminarCuentaTesterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="automated-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tatf.swaglabs.modules.login.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tatf.swaglabs.modules.login.test" />
+      <option name="MAIN_CLASS_NAME" value="com.tatf.swaglabs.modules.login.test.LoginTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReiniciarContraseniaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="automated-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AdminCES_ConTestParametrizados.parametrizacionTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AdminCES_Script2ConTestParametrizados.parametrizacionTest" />
+      <option name="MAIN_CLASS_NAME" value="AdminCES_ConTestParametrizados.parametrizacionTest.ReiniciarContraseniaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ReiniciarContraseniaTest" />
+        <item itemvalue="JUnit.EliminarCuentaTesterTest" />
+        <item itemvalue="JUnit.CrearCuentaTesterTest" />
+        <item itemvalue="JUnit.CrearCuentaAdminTest" />
+        <item itemvalue="JUnit.LoginTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.29188.72" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.29188.72" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6cbd7734-a4a8-4f58-b93f-f4367460c377" name="Changes" comment="" />
+      <created>1790890830513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1790890830513</updated>
+      <workItem from="1790890831561" duration="4646000" />
+      <workItem from="1790896664731" duration="73000" />
+      <workItem from="1790896761652" duration="7000" />
+      <workItem from="1790965371045" duration="12682000" />
+      <workItem from="1791165363882" duration="80000" />
+      <workItem from="1791212012275" duration="1524000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
