@@ -1,21 +1,22 @@
-package AdminCES_ConTestParametrizados.parametrizacionTest;
+package AdminCES_ConTestParametrizados.suites.pruebas.admin;
 
+import AdminCES_ConTestParametrizados.admin.data.AdminData;
+import AdminCES_ConTestParametrizados.admin.task.RegistrarAdminTask;
 import AdminCES_ConTestParametrizados.home.data.HomeData;
 import AdminCES_ConTestParametrizados.home.task.HomeTask;
 import AdminCES_ConTestParametrizados.login.data.LoginData;
 import AdminCES_ConTestParametrizados.login.task.AccessTask;
 import AdminCES_ConTestParametrizados.login.task.LoginTask;
-import AdminCES_ConTestParametrizados.reset.data.ResetData;
-import AdminCES_ConTestParametrizados.reset.task.ResetPasswordTask;
 import com.tatf.core.browser.BrowserFactory;
 import com.tatf.core.browser.IBrowser;
 import com.tatf.core.verification.IVerify;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
-public class ReiniciarContraseniaTest {
+public class CrearCuentaAdminTest {
     private IBrowser browser;
     private IVerify verify;
 
@@ -23,30 +24,34 @@ public class ReiniciarContraseniaTest {
     public void beforeEach() {
         browser = BrowserFactory.getBrowser();
         verify = IVerify.create();
+
         browser.interaction().navigateTo(HomeData.URL_HOME);
 
         AccessTask accessTask = new AccessTask(browser);
         accessTask.acceder(LoginData.HASH);
     }
-
-    @ParameterizedTest(name = "Reiniciar Contraseña #{index} {0}")
-    @CsvSource({
-            "leonardoperez@gmail.com, 1234",
-            "yaniscorrea@gmail.com, 123"
-    })
-    public void testReiniciarContrasenia(String correo, String nuevaContrasenia) {
-        ResetPasswordTask resetPasswordTask = new ResetPasswordTask(browser);
+    @Tag("modulo-admin")
+    @Tag("login")
+    @Tag("alta-usuario")
+    @Tag("humo")
+    @Tag("regresion")
+    @ParameterizedTest(name = "Crear Admin #{index} {0} {1}")
+    @CsvFileSource(resources = "/datos_alta.csv", useHeadersInDisplayName = true)
+    public void testCrearCuentaAdmin(String nombre, String apellido, String correo, String pais, String contrasenia) {
         HomeTask homeTask = new HomeTask(browser);
+        RegistrarAdminTask registrarAdminTask = new RegistrarAdminTask(browser);
         LoginTask loginTask = new LoginTask(browser);
 
         verify.verifyTrue(homeTask.usuarioSinSesion(), HomeData.MENSAJE_ERROR_SESION_INICIADA);
-
-        homeTask.irAReiniciarContrasenia();
-        verify.verifyTrue(resetPasswordTask.verificarTitulo(ResetData.TITULO_FORMULARIO),ResetData.MENSAJE_ERROR_FORMULARIO);
-        resetPasswordTask.reiniciarContrasenia(
+        homeTask.irAFormularioCrearAdmin();
+        verify.verifyTrue(registrarAdminTask.verificarTexto(AdminData.TITULO_FORMULARIO), AdminData.MENSAJE_FORMULARIO_ERROR);
+        registrarAdminTask.registrarAdministrador(
+                nombre,
+                apellido,
                 correo,
-                nuevaContrasenia,
-                nuevaContrasenia
+                contrasenia,
+                contrasenia,
+                pais
         );
         verify.verifyTrue(homeTask.usuarioSinSesion(), HomeData.MENSAJE_REDIRECCION_ERROR);
 
@@ -54,7 +59,7 @@ public class ReiniciarContraseniaTest {
 
         homeTask.irALogin();
         verify.verifyTrue(loginTask.verificarTitulo(LoginData.TITULO),LoginData.MENSAJE_ERROR_LOGIN);
-        loginTask.iniciarSesion(correo, nuevaContrasenia);
+        loginTask.iniciarSesion(correo, contrasenia);
         verify.verifyTrue(homeTask.usuarioLogueado(),HomeData.MENSAJE_ERROR_USUARIO_NO_LOGUEADO);
     }
 

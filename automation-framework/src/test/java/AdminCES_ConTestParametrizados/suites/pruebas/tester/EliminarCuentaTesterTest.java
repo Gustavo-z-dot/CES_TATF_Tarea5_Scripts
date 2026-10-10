@@ -1,4 +1,4 @@
-package AdminCES_ConTestParametrizados.parametrizacionTest;
+package AdminCES_ConTestParametrizados.suites.pruebas.tester;
 
 import AdminCES_ConTestParametrizados.home.data.HomeData;
 import AdminCES_ConTestParametrizados.home.task.HomeTask;
@@ -12,6 +12,7 @@ import com.tatf.core.browser.IBrowser;
 import com.tatf.core.verification.IVerify;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -36,7 +37,9 @@ public class EliminarCuentaTesterTest {
 
         browser.interaction().navigateTo(HomeData.URL_HOME);
     }
-
+    @Tag("modulo-tester")
+    @Tag("baja-usuario")
+    @Tag("regresion")
     @ParameterizedTest(name="Eliminar Tester #{index} {0}")
     @ValueSource(strings = {"nahuel@gmail.com", "mariana@gmail.com", "dardo@gmail.com"})
     public void testEliminarUsuarioTester(String correo) {
