@@ -1,5 +1,6 @@
 package AdminCES_ConTestParametrizados.suites.pruebas.reset;
 
+import AdminCES_ConTestParametrizados.base.BaseTest;
 import AdminCES_ConTestParametrizados.home.data.HomeData;
 import AdminCES_ConTestParametrizados.home.task.HomeTask;
 import AdminCES_ConTestParametrizados.login.data.LoginData;
@@ -17,19 +18,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 
-public class ReiniciarContraseniaTest {
-    private IBrowser browser;
-    private IVerify verify;
-
-    @BeforeEach
-    public void beforeEach() {
-        browser = BrowserFactory.getBrowser();
-        verify = IVerify.create();
-        browser.interaction().navigateTo(HomeData.URL_HOME);
-
-        AccessTask accessTask = new AccessTask(browser);
-        accessTask.acceder(LoginData.HASH);
-    }
+public class ReiniciarContraseniaTest extends BaseTest{
     @Tag("modulo-reset")
     @Tag("regresion")
     @Tag("humo")
@@ -38,6 +27,7 @@ public class ReiniciarContraseniaTest {
             "leonardoperez@gmail.com, 1234",
             "yaniscorrea@gmail.com, 123"
     })
+
     public void testReiniciarContrasenia(String correo, String nuevaContrasenia) {
         ResetPasswordTask resetPasswordTask = new ResetPasswordTask(browser);
         HomeTask homeTask = new HomeTask(browser);
@@ -62,8 +52,4 @@ public class ReiniciarContraseniaTest {
         verify.verifyTrue(homeTask.usuarioLogueado(),HomeData.MENSAJE_ERROR_USUARIO_NO_LOGUEADO);
     }
 
-    @AfterEach
-    public void afterEach() {
-        BrowserFactory.quitBrowser();
-    }
 }

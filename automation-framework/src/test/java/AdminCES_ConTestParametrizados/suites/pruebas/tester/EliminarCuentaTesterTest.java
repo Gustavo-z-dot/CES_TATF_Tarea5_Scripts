@@ -1,5 +1,6 @@
 package AdminCES_ConTestParametrizados.suites.pruebas.tester;
 
+import AdminCES_ConTestParametrizados.base.BaseTest;
 import AdminCES_ConTestParametrizados.home.data.HomeData;
 import AdminCES_ConTestParametrizados.home.task.HomeTask;
 import AdminCES_ConTestParametrizados.login.data.LoginData;
@@ -16,27 +17,13 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class EliminarCuentaTesterTest {
-    private IBrowser browser;
-    private IVerify verify;
+public class EliminarCuentaTesterTest extends BaseTest {
 
     @BeforeEach
     public void beforeEach() {
-        browser = BrowserFactory.getBrowser();
-        verify = IVerify.create();
-        browser.interaction().navigateTo(HomeData.URL_HOME);
-
-        AccessTask accessTask = new AccessTask(browser);
-        accessTask.acceder(LoginData.HASH);
-
-        HomeTask homeTask = new HomeTask(browser);
-        homeTask.irALogin();
-
-        LoginTask loginTask = new LoginTask(browser);
-        loginTask.iniciarSesion(LoginData.CORREO_LOGIN, LoginData.PASSWORD_LOGIN);
-
-        browser.interaction().navigateTo(HomeData.URL_HOME);
+    loginComoAdmin();
     }
+
     @Tag("modulo-tester")
     @Tag("baja-usuario")
     @Tag("regresion")
@@ -53,9 +40,4 @@ public class EliminarCuentaTesterTest {
         usersTask.eliminarTesterPorCorreo(correo);
 
         verify.verifyFalse(usersTask.obtenerTextoDeTabla().contains(correo), TesterData.MENSAJE_ERROR_TESTER_AUN_VISIBLE);    }
-
-    @AfterEach
-    public void afterEach() {
-        BrowserFactory.quitBrowser();
-    }
 }
